@@ -144,7 +144,7 @@ bool Currency::constructMinerTx(uint32_t height, size_t medianSize, uint64_t alr
 bool constructMinerTxBySize(const CryptoNote::Currency& currency, CryptoNote::Transaction& minerTx, uint32_t height,
                             uint64_t alreadyGeneratedCoins, const CryptoNote::AccountPublicAddress& minerAddress,
                             std::vector<size_t>& blockSizes, size_t targetTxSize, size_t targetBlockSize,
-                            uint64_t fee/* = 0*/, bool penalizeFee/* = false*/) {
+                            uint64_t fee=0, bool penalizeFee=false) {
   if (!currency.constructMinerTx(height, Common::medianValue(blockSizes), alreadyGeneratedCoins, targetBlockSize,
       fee, minerAddress, minerTx, CryptoNote::blobdata(), 1, penalizeFee)) {
     return false;
@@ -181,7 +181,7 @@ bool constructMinerTxBySize(const CryptoNote::Currency& currency, CryptoNote::Tr
 
 bool constructMinerTxManually(const CryptoNote::Currency& currency, uint32_t height, uint64_t alreadyGeneratedCoins,
                               const AccountPublicAddress& minerAddress, Transaction& tx, uint64_t fee,
-                              KeyPair* pTxKey/* = 0*/) {
+                              KeyPair* pTxKey=) {
   KeyPair txkey;
   txkey = KeyPair::generate();
   add_tx_pub_key_to_extra(tx, txkey.pub);
