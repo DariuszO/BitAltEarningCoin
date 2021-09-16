@@ -144,7 +144,8 @@ bool Currency::constructMinerTx(uint32_t height, size_t medianSize, uint64_t alr
 bool constructMinerTxBySize(const CryptoNote::Currency& currency, CryptoNote::Transaction& minerTx, uint32_t height,
                             uint64_t alreadyGeneratedCoins, const CryptoNote::AccountPublicAddress& minerAddress,
                             std::vector<size_t>& blockSizes, size_t targetTxSize, size_t targetBlockSize,
-                            uint64_t fee=0, bool penalizeFee=false) {
+                            uint64_t fee=0, bool penalizeFee=false) 
+{
   if (!currency.constructMinerTx(height, Common::medianValue(blockSizes), alreadyGeneratedCoins, targetBlockSize,
       fee, minerAddress, minerTx, CryptoNote::blobdata(), 1, penalizeFee)) {
     return false;
@@ -512,7 +513,7 @@ CurrencyBuilder& CurrencyBuilder::emissionSpeedFactor(unsigned int val) {
 
 CurrencyBuilder& CurrencyBuilder::numberOfDecimalPlaces(size_t val) {
   m_currency.m_numberOfDecimalPlaces = val;
-  m_currency.m_coin = 1;
+  m_currency.m_coin = 10;
   for (size_t i = 0; i < m_currency.m_numberOfDecimalPlaces; ++i) {
     m_currency.m_coin *= 10;
   }
@@ -528,4 +529,4 @@ CurrencyBuilder& CurrencyBuilder::difficultyWindow(size_t val) {
   return *this;
 }
 
-}
+}}
